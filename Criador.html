@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>Xsess · Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ============================================================
+           RESET E BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cc0033;
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #111;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #cc0033;
+        }
+
+        .logo small {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            background: #cc0033;
+            padding: 4px 16px;
+            border-radius: 30px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+        }
+
+        .btn-header:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-color: rgba(204, 0, 51, 0.2);
+        }
+
+        .btn-header i {
+            font-size: 14px;
+        }
+
+        /* ============================================================
+           ESTATÍSTICAS
+           ============================================================ */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(204, 0, 51, 0.15);
+        }
+
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #cc0033;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-card .label {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           FORMULÁRIO
+           ============================================================ */
+        .form-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-title span {
+            color: #cc0033;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: rgba(204, 0, 51, 0.3);
+            box-shadow: 0 0 0 4px rgba(204, 0, 51, 0.04);
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group .help {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           UPLOAD
+           ============================================================ */
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .upload-area:hover {
+            border-color: rgba(204, 0, 51, 0.2);
+            background: rgba(204, 0, 51, 0.03);
+        }
+
+        .upload-area.dragover {
+            border-color: #cc0033;
+            background: rgba(204, 0, 51, 0.06);
+        }
+
+        .upload-area .icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+            display: block;
+            color: rgba(255, 255, 255, 0.08);
+        }
+
+        .upload-area .text {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .upload-area .text strong {
+            color: #cc0033;
+        }
+
+        .upload-area .sub {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .upload-area input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-preview {
+            display: none;
+            margin-top: 14px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+        }
+
+        .upload-preview.active {
+            display: block;
+        }
+
+        .upload-preview .preview-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .upload-preview .preview-row .info {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .upload-preview .preview-row .info .name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .upload-preview .preview-row .info .size {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 12px;
+        }
+
+        .upload-preview .preview-row .status {
+            color: #00c853;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .upload-preview video,
+        .upload-preview img {
+            max-width: 160px;
+            max-height: 90px;
+            border-radius: 8px;
+            background: #000;
+            object-fit: cover;
+        }
+
+        .thumb-upload {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .thumb-upload .upload-area {
+            flex: 1;
+            min-height: 120px;
+            padding: 20px;
+        }
+
+        .thumb-upload .thumb-preview {
+            width: 180px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+            flex-shrink: 0;
+        }
+
+        .thumb-upload .thumb-preview.active {
+            display: block;
+        }
+
+        .thumb-upload .thumb-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ============================================================
+           BOTÕES
+           ============================================================ */
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-success {
+            background: #00c853;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #00b34a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 200, 83, 0.15);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-color: rgba(204, 0, 51, 0.2);
+        }
+
+        .btn-danger {
+            background: #d32f2f;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .form-actions .btn {
+            flex: 1;
+            justify-content: center;
+            min-width: 140px;
+        }
+
+        /* ============================================================
+           MENSAGENS
+           ============================================================ */
+        .message {
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 500;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            display: flex;
+            background: rgba(0, 200, 83, 0.06);
+            border: 1px solid rgba(0, 200, 83, 0.15);
+            color: #69f0ae;
+        }
+
+        .message.error {
+            display: flex;
+            background: rgba(211, 47, 47, 0.06);
+            border: 1px solid rgba(211, 47, 47, 0.15);
+            color: #ef9a9a;
+        }
+
+        .message .close-msg {
+            margin-left: auto;
+            cursor: pointer;
+            font-size: 16px;
+            opacity: 0.5;
+            background: none;
+            border: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+
+        .message .close-msg:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           PRÉ-VISUALIZAÇÃO
+           ============================================================ */
+        .preview-section {
+            display: none;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .preview-section.active {
+            display: block;
+        }
+
+        .preview-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .preview-card .preview-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-card .preview-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .preview-card .preview-info {
+            padding: 18px 20px 20px;
+        }
+
+        .preview-card .preview-info .p-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .preview-card .preview-info .p-meta {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+
+        .preview-card .preview-info .p-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .preview-card .preview-info .p-tags span {
+            color: #cc0033;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            border: 1px solid rgba(204, 0, 51, 0.12);
+            padding: 2px 14px;
+            border-radius: 12px;
+        }
+
+        .preview-card .preview-info .p-desc {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           LISTA DE VÍDEOS
+           ============================================================ */
+        .video-list {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .video-list .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .video-list .list-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-list .list-title span {
+            color: #cc0033;
+        }
+
+        .video-list .list-count {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .video-list .list-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .video-list .list-item:hover {
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .video-list .list-item .thumb {
+            width: 70px;
+            height: 40px;
+            background: #1a1a1a;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .video-list .list-item .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-list .list-item .info {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .video-list .list-item .info .name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 13px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-list .list-item .info .meta {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .video-list .list-item .actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .video-list .list-item .actions .btn-sm {
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .video-list .list-item .actions .btn-sm:hover {
+            border-color: rgba(204, 0, 51, 0.2);
+            color: #fff;
+        }
+
+        .video-list .list-item .actions .btn-sm.danger:hover {
+            border-color: #d32f2f;
+            color: #d32f2f;
+        }
+
+        /* ============================================================
+           EMPTY STATE
+           ============================================================ */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .empty-state .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: block;
+            color: rgba(255, 255, 255, 0.04);
+        }
+
+        .empty-state .text {
+            font-size: 15px;
+        }
+
+        .empty-state .sub {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.06);
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           TRADUTOR
+           ============================================================ */
+        .translate-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .translate-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .translate-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-color: rgba(204, 0, 51, 0.2);
+        }
+
+        .translate-btn i {
+            font-size: 14px;
+        }
+
+        .translate-dropdown {
+            display: none;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 6px 0;
+            min-width: 150px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+            z-index: 100;
+        }
+
+        .translate-dropdown.active {
+            display: block;
+        }
+
+        .translate-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 18px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .translate-dropdown a:hover {
+            background: rgba(204, 0, 51, 0.06);
+            color: #fff;
+        }
+
+        .translate-dropdown a i {
+            font-size: 14px;
+            width: 18px;
+        }
+
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            .container {
+                padding: 20px 16px;
+                border-radius: 12px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            .form-actions {
+                flex-direction: column;
+            }
+            .form-actions .btn {
+                flex: none;
+                width: 100%;
+            }
+            .thumb-upload {
+                flex-direction: column;
+            }
+            .thumb-upload .thumb-preview {
+                width: 100%;
+                height: 140px;
+            }
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .video-list .list-item {
+                flex-wrap: wrap;
+            }
+            .video-list .list-item .actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            .upload-preview .preview-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .upload-preview video,
+            .upload-preview img {
+                max-width: 100%;
+                max-height: 120px;
+            }
+            .translate-dropdown {
+                right: -10px;
+                min-width: 130px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            .container {
+                padding: 16px 12px;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .stat-card .number {
+                font-size: 24px;
+            }
+            .upload-area {
+                padding: 20px 16px;
+            }
+            .upload-area .icon {
+                font-size: 32px;
+            }
+            .video-list .list-item .thumb {
+                width: 60px;
+                height: 34px;
+            }
+            .video-list .list-item .info .name {
+                font-size: 12px;
+            }
+            .form-title {
+                font-size: 17px;
+            }
+            .badge {
+                font-size: 10px;
+                padding: 3px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
+        <header class="header">
+            <div class="logo">
+                X<span>sess</span>
+                <small>Painel do Criador · Studio</small>
+            </div>
+            <div class="header-actions">
+
+                <!-- TRADUTOR -->
+                <div class="translate-container">
+                    <button class="translate-btn" id="translateToggle">
+                        <i class="fas fa-language"></i>
+                        <span>Idioma</span>
+                        <i class="fas fa-chevron-down" style="font-size:10px;"></i>
+                    </button>
+                    <div class="translate-dropdown" id="translateDropdown">
+                        <a data-lang="pt"><i class="fas fa-flag"></i> Português</a>
+                        <a data-lang="en"><i class="fas fa-flag"></i> English</a>
+                        <a data-lang="es"><i class="fas fa-flag"></i> Español</a>
+                        <a data-lang="fr"><i class="fas fa-flag"></i> Français</a>
+                        <a data-lang="de"><i class="fas fa-flag"></i> Deutsch</a>
+                        <a data-lang="it"><i class="fas fa-flag"></i> Italiano</a>
+                        <a data-lang="ja"><i class="fas fa-flag"></i> 日本語</a>
+                        <a data-lang="zh"><i class="fas fa-flag"></i> 中文</a>
+                        <a data-lang="ru"><i class="fas fa-flag"></i> Русский</a>
+                        <a data-lang="ar"><i class="fas fa-flag"></i> العربية</a>
+                    </div>
+                </div>
+
+                <a href="https://xsesss.github.io/Site-adulto/" target="_blank" class="btn-header">
+                    <i class="fas fa-external-link-alt"></i> Ver Site
+                </a>
+                <span class="badge">🎬 PRO</span>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        ESTATÍSTICAS
+        ============================================================ -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number" id="totalVideos">0</div>
+                <div class="label">Vídeos</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="totalViews">0</div>
+                <div class="label">Visualizações</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="totalLikes">0</div>
+                <div class="label">Curtidas</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="totalComments">0</div>
+                <div class="label">Comentários</div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        MENSAGENS
+        ============================================================ -->
+        <div class="message success" id="msgSuccess">
+            <i class="fas fa-check-circle"></i>
+            <span id="successText">Vídeo publicado com sucesso!</span>
+            <button class="close-msg" onclick="this.parentElement.style.display='none'"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="message error" id="msgError">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText">Erro ao publicar!</span>
+            <button class="close-msg" onclick="this.parentElement.style.display='none'"><i class="fas fa-times"></i></button>
+        </div>
+
+        <!-- ============================================================
+        FORMULÁRIO
+        ============================================================ -->
+        <h2 class="form-title"><i class="fas fa-upload" style="color:#cc0033;"></i> <span>Publicar</span> Novo Vídeo</h2>
+
+        <form id="videoForm">
+
+            <!-- Upload do vídeo -->
+            <div class="form-group">
+                <label><i class="fas fa-video"></i> Arquivo do Vídeo *</label>
+                <div class="upload-area" id="videoUploadArea">
+                    <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                    <div class="text"><strong>Clique ou arraste</strong> o arquivo de vídeo</div>
+                    <div class="sub">MP4, WebM, MOV · Máx. 500MB</div>
+                    <input type="file" id="videoFile" accept="video/*" required />
+                </div>
+                <div class="upload-preview" id="videoPreviewUpload">
+                    <div class="preview-row">
+                        <video id="previewVideo" controls style="width:160px;height:90px;object-fit:cover;border-radius:8px;background:#000;"></video>
+                        <div class="info">
+                            <div class="name" id="videoFileName">video.mp4</div>
+                            <div class="size" id="videoFileSize">0 MB</div>
+                        </div>
+                        <div class="status"><i class="fas fa-check-circle"></i> Carregado</div>
+                    </div>
+                </div>
+                <div class="help">Formatos suportados: MP4, WebM, MOV · Máx. 500MB</div>
+            </div>
+
+            <!-- Thumbnail -->
+            <div class="form-group">
+                <label><i class="fas fa-image"></i> Thumbnail</label>
+                <div class="thumb-upload">
+                    <div class="upload-area" id="thumbUploadArea">
+                        <span class="icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                        <div class="text"><strong>Clique ou arraste</strong> a imagem de capa</div>
+                        <div class="sub">JPG, PNG · 16:9 recomendado</div>
+                        <input type="file" id="thumbFile" accept="image/*" />
+                    </div>
+                    <div class="thumb-preview" id="thumbPreview">
+                        <img id="thumbPreviewImg" src="" alt="Thumbnail" />
+                    </div>
+                </div>
+                <div class="help">Use uma imagem 16:9 (ex: 1280×720) para melhor resultado</div>
+            </div>
+
+            <!-- Título e Categoria -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="videoTitle"><i class="fas fa-tag"></i> Título *</label>
+                    <input type="text" id="videoTitle" placeholder="Ex: Lançamento Exclusivo" required />
+                </div>
+                <div class="form-group">
+                    <label for="videoCategory"><i class="fas fa-folder"></i> Categoria</label>
+                    <select id="videoCategory">
+                        <option value="">Selecione...</option>
+                        <option value="Exclusivo">🔥 Exclusivo</option>
+                        <option value="4K">📺 4K</option>
+                        <option value="Novo">🆕 Novo</option>
+                        <option value="Em Alta">📈 Em Alta</option>
+                        <option value="Premium">💎 Premium</option>
+                        <option value="Lançamento">🚀 Lançamento</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tags e Duração -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="videoTags"><i class="fas fa-hashtag"></i> Tags</label>
+                    <input type="text" id="videoTags" placeholder="4K, Exclusivo, Novo" />
+                    <div class="help">Separe por vírgula</div>
+                </div>
+                <div class="form-group">
+                    <label for="videoDuration"><i class="fas fa-clock"></i> Duração</label>
+                    <input type="text" id="videoDuration" placeholder="12:30" />
+                    <div class="help">Detectada automaticamente do vídeo</div>
+                </div>
+            </div>
+
+            <!-- Shorts -->
+            <div class="form-group" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <label for="videoShorts" style="margin-bottom:0;display:flex;align-items:center;gap:8px;cursor:pointer;">
+                    <i class="fas fa-bolt" style="color:#cc0033;"></i>
+                    <input type="checkbox" id="videoShorts" style="width:18px;height:18px;accent-color:#cc0033;cursor:pointer;" />
+                    Este vídeo é um <strong>Short</strong> (vertical)
+                </label>
+            </div>
+
+            <!-- Descrição -->
+            <div class="form-group">
+                <label for="videoDescription"><i class="fas fa-align-left"></i> Descrição</label>
+                <textarea id="videoDescription" placeholder="Descreva o conteúdo do vídeo..."></textarea>
+            </div>
+
+            <!-- Botões -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> Publicar</button>
+                <button type="button" class="btn btn-secondary" id="btnPreview"><i class="fas fa-eye"></i> Pré-visualizar</button>
+                <button type="button" class="btn btn-secondary" id="btnClear"><i class="fas fa-eraser"></i> Limpar</button>
+            </div>
+
+        </form>
+
+        <!-- ============================================================
+        PRÉ-VISUALIZAÇÃO
+        ============================================================ -->
+        <div class="preview-section" id="previewSection">
+            <h3 style="color:#fff;font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-eye" style="color:#cc0033;"></i> Pré-visualização
+            </h3>
+            <div class="preview-card">
+                <div class="preview-player">
+                    <video id="previewPlayer" controls></video>
+                </div>
+                <div class="preview-info">
+                    <div class="p-title" id="previewTitle">Título</div>
+                    <div class="p-meta">
+                        <span id="previewDate">00/00/0000</span>
+                        <span id="previewDuration">Duração: --:--</span>
+                    </div>
+                    <div class="p-tags" id="previewTags"></div>
+                    <div class="p-desc" id="previewDesc">Descrição</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        LISTA DE VÍDEOS
+        ============================================================ -->
+        <div class="video-list">
+            <div class="list-header">
+                <div class="list-title"><i class="fas fa-film" style="color:#cc0033;"></i> <span>Meus</span> Vídeos</div>
+                <div class="list-count" id="videoCount">0 vídeos</div>
+            </div>
+            <div id="videoListContainer"></div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // TRADUTOR
+        // ============================================================
+        const translateToggle = document.getElementById('translateToggle');
+        const translateDropdown = document.getElementById('translateDropdown');
+
+        translateToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            translateDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+            translateDropdown.classList.remove('active');
+        });
+
+        document.querySelectorAll('.translate-dropdown a').forEach(item => {
+            item.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                const url =
+                    `https://translate.google.com/translate?hl=${lang}&sl=pt&u=${encodeURIComponent(window.location.href)}`;
+                window.open(url, '_blank');
+                translateDropdown.classList.remove('active');
+            });
+        });
+
+        // ============================================================
+        // BANCO DE DADOS
+        // ============================================================
+        const DB = {
+            get: (k, d) => {
+                try { const data = localStorage.getItem('xsess_' + k); return data ? JSON.parse(data) : d; } catch { return d; }
+            },
+            set: (k, v) => { localStorage.setItem('xsess_' + k, JSON.stringify(v)); }
+        };
+
+        // ============================================================
+        // ESTADO
+        // ============================================================
+        let videos = DB.get('videos', []);
+        let likes = DB.get('likes', {});
+        let comments = DB.get('comments', {});
+        let views = DB.get('views', {});
+        let videoFileData = null;
+        let thumbFileData = null;
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const $ = (id) => document.getElementById(id);
+
+        function formatDate() {
+            const now = new Date();
+            return now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+
+        function formatViews(n) {
+            if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+            if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+            return n;
+        }
+
+        function showSuccess(msg) {
+            const el = $('msgSuccess');
+            $('successText').textContent = msg;
+            el.style.display = 'flex';
+            $('msgError').style.display = 'none';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        function showError(msg) {
+            const el = $('msgError');
+            $('errorText').textContent = msg;
+            el.style.display = 'flex';
+            $('msgSuccess').style.display = 'none';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        // ============================================================
+        // UPLOAD DE VÍDEO
+        // ============================================================
+        const videoUploadArea = $('videoUploadArea');
+        const videoFileInput = $('videoFile');
+        const videoPreviewUpload = $('videoPreviewUpload');
+        const previewVideo = $('previewVideo');
+        const videoFileName = $('videoFileName');
+        const videoFileSize = $('videoFileSize');
+
+        videoUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            videoUploadArea.classList.add('dragover');
+        });
+        videoUploadArea.addEventListener('dragleave', () => {
+            videoUploadArea.classList.remove('dragover');
+        });
+        videoUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            videoUploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleVideoFile(e.dataTransfer.files[0]);
+        });
+        videoFileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) handleVideoFile(e.target.files[0]);
+        });
+
+        function handleVideoFile(file) {
+            const validTypes = ['video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo'];
+            if (!validTypes.includes(file.type) && !file.name.match(/\.(mp4|webm|mov|avi|mkv)$/i)) {
+                showError('Formato de vídeo não suportado.');
+                return;
+            }
+            if (file.size > 500 * 1024 * 1024) {
+                showError('Arquivo muito grande. Máximo 500MB.');
+                return;
+            }
+
+            videoFileData = file;
+            videoFileName.textContent = file.name;
+            videoFileSize.textContent = formatFileSize(file.size);
+            videoPreviewUpload.classList.add('active');
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewVideo.src = e.target.result;
+                previewVideo.load();
+                previewVideo.onloadedmetadata = () => {
+                    const dur = previewVideo.duration;
+                    if (dur && !isNaN(dur) && dur > 0) {
+                        const mins = Math.floor(dur / 60);
+                        const secs = Math.floor(dur % 60);
+                        $('videoDuration').value = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+                    }
+                };
+            };
+            reader.readAsDataURL(file);
+
+            const previewPlayer = $('previewPlayer');
+            if (previewPlayer) {
+                previewPlayer.src = URL.createObjectURL(file);
+                previewPlayer.load();
+            }
+        }
+
+        // ============================================================
+        // UPLOAD DE THUMBNAIL
+        // ============================================================
+        const thumbUploadArea = $('thumbUploadArea');
+        const thumbFileInput = $('thumbFile');
+        const thumbPreview = $('thumbPreview');
+        const thumbPreviewImg = $('thumbPreviewImg');
+
+        thumbUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            thumbUploadArea.classList.add('dragover');
+        });
+        thumbUploadArea.addEventListener('dragleave', () => {
+            thumbUploadArea.classList.remove('dragover');
+        });
+        thumbUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            thumbUploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) handleThumbFile(e.dataTransfer.files[0]);
+        });
+        thumbFileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) handleThumbFile(e.target.files[0]);
+        });
+
+        function handleThumbFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showError('Formato de imagem não suportado.');
+                return;
+            }
+            thumbFileData = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                thumbPreviewImg.src = e.target.result;
+                thumbPreview.classList.add('active');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ============================================================
+        // PRÉ-VISUALIZAÇÃO
+        // ============================================================
+        $('btnPreview').addEventListener('click', () => {
+            const title = $('videoTitle').value.trim();
+            if (!title) { showError('Digite um título.'); return; }
+            if (!videoFileData) { showError('Envie um vídeo.'); return; }
+
+            const category = $('videoCategory').value;
+            const tags = $('videoTags').value.trim();
+            const duration = $('videoDuration').value.trim();
+            const desc = $('videoDescription').value.trim();
+            const isShort = $('videoShorts').checked;
+
+            const section = $('previewSection');
+            section.classList.add('active');
+
+            $('previewTitle').textContent = title + (isShort ? ' ⚡' : '');
+            $('previewDate').textContent = formatDate();
+            $('previewDuration').textContent = duration ? `Duração: ${duration}` : 'Duração: --:--';
+            $('previewDesc').textContent = desc || 'Sem descrição.';
+
+            const tagsContainer = $('previewTags');
+            tagsContainer.innerHTML = '';
+            if (category) {
+                const span = document.createElement('span');
+                span.textContent = category;
+                tagsContainer.appendChild(span);
+            }
+            if (tags) {
+                tags.split(',').forEach(tag => {
+                    const span = document.createElement('span');
+                    span.textContent = tag.trim();
+                    tagsContainer.appendChild(span);
+                });
+            }
+            if (isShort) {
+                const span = document.createElement('span');
+                span.textContent = '⚡ Short';
+                tagsContainer.appendChild(span);
+            }
+
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // ============================================================
+        // PUBLICAR VÍDEO
+        // ============================================================
+        $('videoForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = $('videoTitle').value.trim();
+            const category = $('videoCategory').value;
+            const tags = $('videoTags').value.trim();
+            const duration = $('videoDuration').value.trim();
+            const desc = $('videoDescription').value.trim();
+            const isShort = $('videoShorts').checked;
+
+            if (!title) { showError('Digite o título.'); return; }
+            if (!videoFileData) { showError('Selecione um vídeo.'); return; }
+
+            const video = {
+                id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+                title: title,
+                category: category,
+                tags: tags ? tags.split(',').map(t => t.trim()).filter(t => t) : [],
+                duration: duration || '--:--',
+                description: desc || '',
+                date: formatDate(),
+                author: 'Xsess Creator',
+                views: 0,
+                isShort: isShort,
+                thumbnail: thumbFileData ? null : 'https://via.placeholder.com/640x360/1a1a1a/cc0033?text=Sem+Imagem',
+                link: URL.createObjectURL(videoFileData)
+            };
+
+            if (thumbFileData) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    video.thumbnail = e.target.result;
+                    saveVideo(video);
+                };
+                reader.readAsDataURL(thumbFileData);
+            } else {
+                saveVideo(video);
+            }
+        });
+
+        function saveVideo(video) {
+            videos.unshift(video);
+            DB.set('videos', videos);
+            renderList();
+            updateStats();
+            showSuccess('✅ Vídeo "' + video.title + '" publicado com sucesso!');
+
+            $('videoForm').reset();
+            videoFileData = null;
+            thumbFileData = null;
+            videoPreviewUpload.classList.remove('active');
+            thumbPreview.classList.remove('active');
+            previewVideo.src = '';
+            const previewPlayer = $('previewPlayer');
+            if (previewPlayer) previewPlayer.src = '';
+            $('previewSection').classList.remove('active');
+            $('videoShorts').checked = false;
+
+            // Fechar mensagem automaticamente
+            setTimeout(() => {
+                $('msgSuccess').style.display = 'none';
+            }, 5000);
+        }
+
+        // ============================================================
+        // RENDERIZAR LISTA
+        // ============================================================
+        function renderList() {
+            const container = $('videoListContainer');
+            const count = $('videoCount');
+
+            if (videos.length === 0) {
+                container.innerHTML = `
+                            <div class="empty-state">
+                                <span class="icon"><i class="fas fa-film"></i></span>
+                                <div class="text">Nenhum vídeo publicado ainda</div>
+                                <div class="sub">Publique seu primeiro vídeo acima</div>
+                            </div>
+                        `;
+                count.textContent = '0 vídeos';
+                return;
+            }
+
+            count.textContent = videos.length + ' vídeo' + (videos.length > 1 ? 's' : '');
+
+            container.innerHTML = videos.map((v) => `
+                        <div class="list-item">
+                            <div class="thumb">
+                                <img src="${v.thumbnail || 'https://via.placeholder.com/70x40/1a1a1a/cc0033?text=Video'}" alt="${v.title}" />
+                            </div>
+                            <div class="info">
+                                <div class="name">${v.title} ${v.isShort ? '⚡' : ''}</div>
+                                <div class="meta">${v.date} · ${v.duration} · ${v.tags.length > 0 ? v.tags.join(', ') : 'Sem tags'} · ${formatViews(v.views || 0)} views</div>
+                            </div>
+                            <div class="actions">
+                                <button class="btn-sm" onclick="window.open('https://xsesss.github.io/Site-adulto/','_blank')"><i class="fas fa-eye"></i> Ver</button>
+                                <button class="btn-sm danger" onclick="deleteVideo('${v.id}')"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `).join('');
+        }
+
+        // ============================================================
+        // DELETAR VÍDEO
+        // ============================================================
+        function deleteVideo(id) {
+            if (!confirm('Tem certeza que deseja excluir este vídeo?')) return;
+            videos = videos.filter(v => v.id !== id);
+            DB.set('videos', videos);
+            renderList();
+            updateStats();
+            showSuccess('🗑️ Vídeo removido com sucesso.');
+            setTimeout(() => {
+                $('msgSuccess').style.display = 'none';
+            }, 3000);
+        }
+
+        // ============================================================
+        // ATUALIZAR ESTATÍSTICAS
+        // ============================================================
+        function updateStats() {
+            $('totalVideos').textContent = videos.length;
+            $('totalViews').textContent = Object.values(views).reduce((a, b) => a + b, 0);
+            $('totalLikes').textContent = Object.values(likes).reduce((a, b) => a + b, 0);
+            $('totalComments').textContent = Object.values(comments).reduce((a, b) => a + b.length, 0);
+        }
+
+        // ============================================================
+        // LIMPAR FORMULÁRIO
+        // ============================================================
+        $('btnClear').addEventListener('click', () => {
+            $('videoForm').reset();
+            videoFileData = null;
+            thumbFileData = null;
+            videoPreviewUpload.classList.remove('active');
+            thumbPreview.classList.remove('active');
+            previewVideo.src = '';
+            const previewPlayer = $('previewPlayer');
+            if (previewPlayer) previewPlayer.src = '';
+            $('previewSection').classList.remove('active');
+            $('videoShorts').checked = false;
+            $('msgSuccess').style.display = 'none';
+            $('msgError').style.display = 'none';
+        });
+
+        // ============================================================
+        // INICIAR
+        // ============================================================
+        renderList();
+        updateStats();
+    </script>
+
+</body>
+</html>
