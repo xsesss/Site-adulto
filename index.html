@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="theme-color" content="#0a0a0a" />
-    <title>Xsess · Conteúdo +18 Premium</title>
+    <title>Xsess · Streaming +18</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         /* ============================================================
-           RESET E BASE
+           RESET E BASE - PREMIUM
            ============================================================ */
         * {
             margin: 0;
@@ -24,89 +25,108 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #f0f0f0;
             -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
             background: #0a0a0a;
         }
         ::-webkit-scrollbar-thumb {
             background: #cc0033;
-            border-radius: 0;
+            border-radius: 4px;
         }
 
         a {
             text-decoration: none;
             color: inherit;
         }
+        img {
+            display: block;
+            max-width: 100%;
+        }
 
         /* ============================================================
-           HEADER - ESTILO NETFLIX
+           HEADER - PREMIUM
            ============================================================ */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            padding: 16px 40px;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            z-index: 1000;
+            padding: 16px 48px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
+            transition: all 0.4s ease;
         }
 
         .header.scrolled {
-            background: #0a0a0a;
-            border-bottom: 1px solid #1a1a1a;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 12px 48px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .logo img {
-            height: 40px;
+            height: 44px;
             width: auto;
             object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(204, 0, 51, 0.2));
         }
 
-        .header-nav {
+        .logo span {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span em {
+            color: #cc0033;
+            font-style: normal;
+        }
+
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 32px;
+        }
+
+        .nav-links a {
             font-size: 14px;
             font-weight: 600;
-            color: #aaa;
-        }
-
-        .header-nav a {
-            transition: color 0.25s;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s;
             padding: 4px 0;
             border-bottom: 2px solid transparent;
+            letter-spacing: 0.3px;
         }
 
-        .header-nav a:hover,
-        .header-nav a.active {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: #fff;
-        }
-
-        .header-nav a.active {
             border-bottom-color: #cc0033;
         }
 
-        .header-nav .badge {
+        .nav-links .badge {
             background: #cc0033;
-            padding: 4px 14px;
-            color: #fff;
+            padding: 4px 16px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 700;
-            border-radius: 2px;
+            color: #fff;
+            letter-spacing: 0.5px;
         }
 
         .header-actions {
@@ -115,90 +135,118 @@
             gap: 16px;
         }
 
-        .header-actions .search-btn {
+        .header-actions .icon-btn {
             background: none;
             border: none;
-            color: #aaa;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
             cursor: pointer;
-            transition: color 0.25s;
+            transition: color 0.3s;
+            padding: 8px;
         }
 
-        .header-actions .search-btn:hover {
+        .header-actions .icon-btn:hover {
             color: #fff;
         }
 
-        .header-actions .search-btn svg {
-            width: 22px;
-            height: 22px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
         /* ============================================================
-           HERO BANNER - ESTILO NETFLIX
+           HERO BANNER - PREMIUM
            ============================================================ */
-        .hero-banner {
+        .hero {
             position: relative;
             width: 100%;
-            height: 70vh;
-            min-height: 420px;
-            max-height: 700px;
+            height: 80vh;
+            min-height: 500px;
+            max-height: 800px;
             background: #0a0a0a;
             overflow: hidden;
             margin-top: 0;
         }
 
-        .hero-banner .banner-image {
+        .hero .bg-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center top;
+            filter: brightness(0.6);
+            transition: transform 6s ease;
         }
 
-        .hero-banner .banner-overlay {
+        .hero:hover .bg-image {
+            transform: scale(1.05);
+        }
+
+        .hero .overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60%;
+            height: 70%;
             background: linear-gradient(0deg, #0a0a0a 10%, transparent 100%);
+            pointer-events: none;
         }
 
-        .hero-banner .banner-content {
+        .hero .content {
             position: absolute;
-            bottom: 20%;
-            left: 40px;
-            max-width: 560px;
+            bottom: 15%;
+            left: 48px;
+            max-width: 580px;
+            z-index: 10;
+            animation: fadeUp 1s ease;
         }
 
-        .hero-banner .banner-content .logo-banner {
-            max-height: 70px;
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero .content .logo-hero {
+            max-height: 80px;
             width: auto;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 0 40px rgba(204, 0, 51, 0.15));
         }
 
-        .hero-banner .banner-content p {
+        .hero .content h1 {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .hero .content h1 em {
+            color: #cc0033;
+            font-style: normal;
+        }
+
+        .hero .content p {
             font-size: 18px;
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
             max-width: 480px;
             line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .hero-banner .banner-content .banner-tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
             margin-bottom: 20px;
         }
 
-        .hero-banner .banner-content .banner-tags span {
-            background: rgba(204, 0, 51, 0.2);
-            border: 1px solid rgba(204, 0, 51, 0.3);
-            padding: 4px 16px;
+        .hero .content .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .hero .content .tags span {
+            background: rgba(204, 0, 51, 0.15);
+            border: 1px solid rgba(204, 0, 51, 0.25);
+            padding: 6px 20px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             color: #cc0033;
@@ -206,113 +254,103 @@
             letter-spacing: 0.5px;
         }
 
-        .hero-banner .banner-content .banner-buttons {
+        .hero .content .buttons {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
 
-        .hero-banner .banner-content .btn-play {
-            display: flex;
+        .btn-play {
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 32px;
+            padding: 14px 36px;
             background: #cc0033;
             border: none;
+            border-radius: 30px;
             color: #fff;
             font-weight: 700;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.25s;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 30px rgba(204, 0, 51, 0.25);
         }
 
-        .hero-banner .banner-content .btn-play:hover {
+        .btn-play:hover {
             background: #b3002e;
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(204, 0, 51, 0.35);
         }
 
-        .hero-banner .banner-content .btn-play svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .btn-play i {
+            font-size: 18px;
         }
 
-        .hero-banner .banner-content .btn-info {
-            display: flex;
+        .btn-info {
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 28px;
+            padding: 14px 32px;
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
             color: #ddd;
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
-            transition: all 0.25s;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
         }
 
-        .hero-banner .banner-content .btn-info:hover {
+        .btn-info:hover {
             background: rgba(255, 255, 255, 0.15);
-        }
-
-        .hero-banner .banner-content .btn-info svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* ============================================================
            CONTEÚDO PRINCIPAL
            ============================================================ */
         .main-content {
-            padding: 0 40px 40px;
-            margin-top: -40px;
+            padding: 0 48px 60px;
+            margin-top: -60px;
             position: relative;
-            z-index: 10;
+            z-index: 20;
         }
 
         /* ============================================================
            SEÇÕES - ESTILO NETFLIX
            ============================================================ */
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .section-header h2 {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
             color: #fff;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .section-header h2 span {
+        .section-header h2 em {
             color: #cc0033;
+            font-style: normal;
         }
 
         .section-header .see-all {
-            color: #888;
+            color: rgba(255, 255, 255, 0.4);
             font-size: 14px;
             font-weight: 600;
-            transition: color 0.25s;
+            transition: color 0.3s;
             cursor: pointer;
         }
 
@@ -321,31 +359,31 @@
         }
 
         /* ============================================================
-           FILTROS - ESTILO NETFLIX
+           FILTROS
            ============================================================ */
         .filter-bar {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
-            padding: 8px 0 16px;
-            margin-bottom: 8px;
+            margin-bottom: 24px;
+            padding-bottom: 4px;
         }
 
         .filter-btn {
-            padding: 6px 20px;
-            border: 1px solid #2a2a2a;
+            padding: 8px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
             background: transparent;
-            color: #888;
+            color: rgba(255, 255, 255, 0.5);
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
-            border-radius: 2px;
         }
 
         .filter-btn:hover {
-            border-color: #cc0033;
+            border-color: rgba(204, 0, 51, 0.3);
             color: #fff;
         }
 
@@ -353,30 +391,33 @@
             background: #cc0033;
             border-color: #cc0033;
             color: #fff;
+            box-shadow: 0 4px 20px rgba(204, 0, 51, 0.15);
         }
 
         /* ============================================================
-           GRID DE VÍDEOS - ESTILO NETFLIX
+           GRID DE VÍDEOS - PREMIUM
            ============================================================ */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
         }
 
         .video-card {
-            background: #111;
-            border: 1px solid #1a1a1a;
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
             position: relative;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 1px solid transparent;
         }
 
         .video-card:hover {
-            border-color: #cc0033;
-            transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(204, 0, 51, 0.08);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(204, 0, 51, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            z-index: 10;
         }
 
         .video-card .thumb {
@@ -394,63 +435,59 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s ease;
         }
 
         .video-card:hover .thumb img {
-            transform: scale(1.06);
+            transform: scale(1.08);
         }
 
         .video-card .thumb .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             background: rgba(0, 0, 0, 0.3);
-            transition: background 0.3s;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .video-card:hover .thumb .overlay {
-            background: rgba(0, 0, 0, 0.05);
+            opacity: 1;
         }
 
-        .video-card .thumb .play-icon {
-            width: 52px;
-            height: 52px;
-            fill: none;
-            stroke: #fff;
-            stroke-width: 2;
-            filter: drop-shadow(0 4px 30px rgba(204, 0, 51, 0.4));
-            transition: all 0.3s;
+        .video-card .thumb .overlay i {
+            font-size: 48px;
+            color: #fff;
+            text-shadow: 0 4px 30px rgba(204, 0, 51, 0.4);
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
         }
 
-        .video-card:hover .thumb .play-icon {
-            transform: scale(1.15);
-            stroke: #cc0033;
+        .video-card:hover .thumb .overlay i {
+            transform: scale(1);
         }
 
         .video-card .thumb .duration {
             position: absolute;
-            bottom: 10px;
-            right: 12px;
+            bottom: 12px;
+            right: 14px;
             background: rgba(0, 0, 0, 0.85);
-            padding: 3px 12px;
+            padding: 4px 14px;
+            border-radius: 12px;
             font-size: 12px;
             font-weight: 600;
             color: #fff;
-            border-radius: 2px;
+            letter-spacing: 0.3px;
         }
 
         .video-card .info {
-            padding: 14px 16px 16px;
+            padding: 18px 20px 20px;
         }
 
         .video-card .info .title {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: #fff;
             line-height: 1.3;
@@ -463,10 +500,10 @@
         .video-card .info .meta {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 12px;
-            color: #666;
-            margin-top: 6px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 8px;
             flex-wrap: wrap;
         }
 
@@ -475,65 +512,77 @@
             font-weight: 600;
             font-size: 10px;
             text-transform: uppercase;
-            border: 1px solid #2a1a1a;
-            padding: 1px 10px;
-            border-radius: 2px;
-            letter-spacing: 0.3px;
+            border: 1px solid rgba(204, 0, 51, 0.2);
+            padding: 2px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
         }
 
         .video-card .info .author {
-            color: #555;
+            color: rgba(255, 255, 255, 0.3);
             font-size: 12px;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         .video-card .info .author span {
             color: #cc0033;
+            font-weight: 600;
         }
 
         /* ============================================================
-           MODAL DO VÍDEO
+           MODAL - PREMIUM
            ============================================================ */
-        .modal {
+        .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 999;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            backdrop-filter: blur(8px);
         }
 
-        .modal.active {
+        .modal-overlay.active {
             display: flex;
         }
 
         .modal-content {
             position: relative;
             width: 100%;
-            max-width: 960px;
+            max-width: 1000px;
             max-height: 92vh;
             overflow-y: auto;
             background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 32px;
+            animation: modalIn 0.4s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .modal-content .close {
             position: absolute;
-            top: 12px;
+            top: 16px;
             right: 20px;
-            font-size: 30px;
-            color: #888;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.4);
             cursor: pointer;
-            transition: color 0.25s;
-            z-index: 10;
+            transition: color 0.3s;
             background: none;
             border: none;
+            z-index: 10;
             font-family: 'Inter', sans-serif;
         }
 
@@ -545,7 +594,9 @@
             width: 100%;
             aspect-ratio: 16/9;
             background: #000;
-            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
 
         .modal-content .player iframe,
@@ -553,19 +604,20 @@
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
         .modal-content .modal-title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
             color: #fff;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .modal-content .modal-author {
-            color: #888;
+            color: rgba(255, 255, 255, 0.4);
             font-size: 14px;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .modal-content .modal-author span {
@@ -576,10 +628,10 @@
         .modal-content .modal-meta {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             font-size: 14px;
-            color: #666;
-            margin-bottom: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 16px;
             flex-wrap: wrap;
         }
 
@@ -588,103 +640,93 @@
             font-weight: 600;
             font-size: 11px;
             text-transform: uppercase;
-            border: 1px solid #2a1a1a;
-            padding: 2px 14px;
-            border-radius: 2px;
+            border: 1px solid rgba(204, 0, 51, 0.2);
+            padding: 2px 16px;
+            border-radius: 12px;
         }
 
         .modal-content .modal-desc {
-            color: #aaa;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
         }
 
         .modal-content .modal-actions {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 14px 0;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            margin: 14px 0;
+            gap: 20px;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            margin: 16px 0;
         }
 
         .like-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
+            padding: 10px 28px;
             background: transparent;
-            border: 1px solid #2a2a2a;
-            padding: 8px 22px;
-            color: #888;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
-            border-radius: 2px;
         }
 
         .like-btn:hover {
-            border-color: #cc0033;
-            color: #cc0033;
+            border-color: rgba(204, 0, 51, 0.3);
+            color: #fff;
         }
 
         .like-btn.liked {
             background: #cc0033;
             border-color: #cc0033;
             color: #fff;
+            box-shadow: 0 4px 20px rgba(204, 0, 51, 0.2);
         }
 
-        .like-btn svg {
-            width: 22px;
-            height: 22px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .like-btn i {
+            font-size: 18px;
         }
 
         .like-count {
-            color: #888;
+            color: rgba(255, 255, 255, 0.4);
             font-size: 15px;
             font-weight: 600;
         }
 
         /* ============================================================
-           COMENTÁRIOS NO MODAL
+           COMENTÁRIOS
            ============================================================ */
         .comments-section {
-            margin-top: 16px;
+            margin-top: 20px;
         }
 
         .comments-section h3 {
+            font-size: 18px;
+            font-weight: 700;
             color: #fff;
-            font-size: 17px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .comments-section h3 svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .comments-section h3 i {
+            color: rgba(255, 255, 255, 0.2);
         }
 
         .comment {
-            background: #111;
-            padding: 12px 16px;
-            border: 1px solid #1a1a1a;
-            margin-bottom: 8px;
-            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            margin-bottom: 10px;
         }
 
         .comment .comment-author {
@@ -694,84 +736,94 @@
         }
 
         .comment .comment-content {
-            color: #aaa;
+            color: rgba(255, 255, 255, 0.7);
             margin-top: 4px;
             font-size: 14px;
         }
 
         .comment .comment-date {
-            color: #555;
+            color: rgba(255, 255, 255, 0.2);
             font-size: 12px;
             margin-top: 4px;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
         }
 
         .comment-form input,
         .comment-form textarea {
             width: 100%;
-            padding: 10px 14px;
-            background: #0a0a0a;
-            border: 1px solid #2a2a2a;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
             color: #fff;
             font-size: 14px;
             font-family: 'Inter', sans-serif;
-            margin-bottom: 8px;
-            transition: border-color 0.25s;
-            border-radius: 2px;
+            transition: border-color 0.3s;
         }
 
         .comment-form input:focus,
         .comment-form textarea:focus {
-            border-color: #cc0033;
+            border-color: rgba(204, 0, 51, 0.3);
             outline: none;
         }
 
         .comment-form .comment-submit {
+            padding: 12px 32px;
             background: #cc0033;
             border: none;
-            padding: 10px 28px;
+            border-radius: 30px;
             color: #fff;
             font-weight: 700;
+            font-size: 14px;
             cursor: pointer;
-            transition: background 0.25s;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
-            border-radius: 2px;
+            align-self: flex-start;
+            box-shadow: 0 4px 20px rgba(204, 0, 51, 0.15);
         }
 
         .comment-form .comment-submit:hover {
             background: #b3002e;
+            transform: translateY(-2px);
         }
 
         /* ============================================================
-           RODAPÉ
+           FOOTER - PREMIUM
            ============================================================ */
         .footer {
-            border-top: 1px solid #1a1a1a;
-            padding: 28px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 32px 48px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             gap: 16px;
             background: #0a0a0a;
-            margin: 0 -40px -40px;
-            padding-left: 40px;
-            padding-right: 40px;
+            margin: 0 -48px -60px;
+            padding-left: 48px;
+            padding-right: 48px;
         }
 
         .footer .copy {
             font-size: 13px;
-            color: #444;
+            color: rgba(255, 255, 255, 0.15);
         }
 
         .footer .copy strong {
-            color: #666;
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
+            gap: 28px;
             font-size: 13px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.15);
         }
 
         .footer-links a:hover {
@@ -788,33 +840,25 @@
            ============================================================ */
         .empty-state {
             text-align: center;
-            padding: 50px 20px;
-            color: #555;
-            grid-column: 1/-1;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.2);
+            grid-column: 1 / -1;
         }
 
-        .empty-state .icon-wrap {
-            margin-bottom: 12px;
-            color: #2a2a2a;
-        }
-
-        .empty-state .icon-wrap svg {
-            width: 56px;
-            height: 56px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .empty-state i {
+            font-size: 56px;
+            margin-bottom: 16px;
+            display: block;
+            color: rgba(255, 255, 255, 0.04);
         }
 
         .empty-state .text {
-            font-size: 17px;
+            font-size: 18px;
         }
 
         .empty-state .sub {
             font-size: 14px;
-            color: #444;
+            color: rgba(255, 255, 255, 0.08);
             margin-top: 4px;
         }
 
@@ -822,156 +866,147 @@
            RESPONSIVO
            ============================================================ */
         @media (max-width: 1024px) {
-            .hero-banner .banner-content p {
-                font-size: 16px;
+            .hero .content h1 {
+                font-size: 38px;
             }
         }
 
         @media (max-width: 768px) {
             .header {
-                padding: 12px 16px;
+                padding: 12px 20px;
             }
-
-            .header-nav {
-                gap: 14px;
+            .header.scrolled {
+                padding: 10px 20px;
+            }
+            .nav-links {
+                gap: 16px;
                 font-size: 13px;
             }
-
-            .header-nav .badge {
-                font-size: 10px;
-                padding: 2px 10px;
+            .nav-links a {
+                font-size: 13px;
             }
-
-            .hero-banner {
-                height: 50vh;
-                min-height: 320px;
+            .hero {
+                height: 60vh;
+                min-height: 400px;
             }
-
-            .hero-banner .banner-content {
-                bottom: 15%;
+            .hero .content {
                 left: 20px;
                 right: 20px;
+                bottom: 12%;
                 max-width: 100%;
             }
-
-            .hero-banner .banner-content .logo-banner {
-                max-height: 50px;
+            .hero .content h1 {
+                font-size: 30px;
             }
-
-            .hero-banner .banner-content p {
+            .hero .content p {
                 font-size: 15px;
             }
-
-            .main-content {
-                padding: 0 16px 20px;
-                margin-top: -20px;
+            .hero .content .logo-hero {
+                max-height: 50px;
             }
-
+            .main-content {
+                padding: 0 20px 40px;
+                margin-top: -40px;
+            }
             .video-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 14px;
+                gap: 16px;
             }
-
             .section-header h2 {
-                font-size: 18px;
-            }
-
-            .modal-content {
-                padding: 16px;
-            }
-
-            .modal-content .modal-title {
                 font-size: 20px;
             }
-
+            .modal-content {
+                padding: 20px;
+            }
+            .modal-content .modal-title {
+                font-size: 22px;
+            }
             .footer {
-                padding: 20px 16px;
-                margin: 0 -16px -20px;
+                padding: 20px 20px;
+                margin: 0 -20px -40px;
                 flex-direction: column;
                 text-align: center;
             }
-
             .footer-links {
                 justify-content: center;
-                gap: 14px;
+                gap: 16px;
             }
-
-            .hero-banner .banner-content .btn-play,
-            .hero-banner .banner-content .btn-info {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
             .filter-bar {
                 gap: 6px;
             }
-
             .filter-btn {
-                padding: 4px 14px;
+                padding: 6px 16px;
                 font-size: 12px;
+            }
+            .btn-play,
+            .btn-info {
+                padding: 10px 24px;
+                font-size: 14px;
             }
         }
 
         @media (max-width: 480px) {
             .header {
-                padding: 10px 12px;
+                padding: 10px 16px;
             }
-
             .logo img {
-                height: 30px;
+                height: 32px;
             }
-
-            .header-nav {
+            .logo span {
+                font-size: 18px;
+            }
+            .nav-links {
                 gap: 10px;
+            }
+            .nav-links a {
                 font-size: 12px;
             }
-
-            .hero-banner {
-                height: 40vh;
-                min-height: 260px;
+            .hero {
+                height: 50vh;
+                min-height: 320px;
             }
-
-            .hero-banner .banner-content p {
+            .hero .content h1 {
+                font-size: 24px;
+            }
+            .hero .content p {
                 font-size: 14px;
             }
-
             .video-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 12px;
             }
-
             .video-card .info .title {
                 font-size: 13px;
             }
-
             .video-card .info .meta {
                 font-size: 11px;
             }
-
-            .hero-banner .banner-content .banner-tags span {
-                font-size: 10px;
-                padding: 2px 10px;
+            .modal-content {
+                padding: 16px;
             }
-
-            .hero-banner .banner-content .btn-play,
-            .hero-banner .banner-content .btn-info {
-                padding: 8px 16px;
-                font-size: 13px;
+            .modal-content .modal-title {
+                font-size: 18px;
             }
-
-            .hero-banner .banner-content .btn-play svg,
-            .hero-banner .banner-content .btn-info svg {
-                width: 16px;
-                height: 16px;
-            }
-
             .modal-content .modal-actions {
                 flex-wrap: wrap;
             }
-
             .like-btn {
-                padding: 6px 16px;
+                padding: 8px 20px;
                 font-size: 13px;
+            }
+            .btn-play,
+            .btn-info {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+            .hero .content .buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero .content .buttons .btn-play,
+            .hero .content .buttons .btn-info {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -979,14 +1014,14 @@
 <body>
 
     <!-- ============================================================
-    HEADER - ESTILO NETFLIX
+    HEADER
     ============================================================ -->
     <header class="header" id="header">
         <div class="logo">
-            <!-- Substitua pelo link da sua logo -->
             <img src="https://i.ibb.co/xt4W4JPC/file-00000000d604720ea01dba00aa237277-3.png" alt="Xsess" />
+            <span>X<em>sess</em></span>
         </div>
-        <nav class="header-nav">
+        <nav class="nav-links">
             <a href="#" class="active">Início</a>
             <a href="#">Categorias</a>
             <a href="#">Em Alta</a>
@@ -994,44 +1029,32 @@
             <span class="badge">18+</span>
         </nav>
         <div class="header-actions">
-            <button class="search-btn" aria-label="Buscar">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8" stroke="currentColor" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" />
-                </svg>
-            </button>
+            <button class="icon-btn" aria-label="Buscar"><i class="fas fa-search"></i></button>
+            <button class="icon-btn" aria-label="Perfil"><i class="fas fa-user-circle"></i></button>
         </div>
     </header>
 
     <!-- ============================================================
-    HERO BANNER - ESTILO NETFLIX
+    HERO BANNER
     ============================================================ -->
-    <section class="hero-banner">
-        <!-- Substitua pelo link da sua imagem de banner -->
-        <img class="banner-image" src="https://i.ibb.co/nsVn4TS8/file-00000000673c720eb9c896f40e3edc10.jpg" alt="Banner Xsess" />
-        <div class="banner-overlay"></div>
-        <div class="banner-content">
-            <img class="logo-banner" src="https://i.ibb.co/xt4W4JPC/file-00000000d604720ea01dba00aa237277-3.png" alt="Xsess" />
+    <section class="hero">
+        <img class="bg-image" src="https://i.ibb.co/nsVn4TS8/file-00000000673c720eb9c896f40e3edc10.jpg" alt="Banner Xsess" />
+        <div class="overlay"></div>
+        <div class="content">
+            <img class="logo-hero" src="https://i.ibb.co/xt4W4JPC/file-00000000d604720ea01dba00aa237277-3.png" alt="Xsess" />
+            <h1>Conteúdo <em>+18</em> Premium</h1>
             <p>Vídeos exclusivos com qualidade profissional. Acesso direto, sem cadastro.</p>
-            <div class="banner-tags">
+            <div class="tags">
                 <span>4K</span>
                 <span>Exclusivo</span>
                 <span>Novo</span>
             </div>
-            <div class="banner-buttons">
-                <button class="btn-play" onclick="scrollToContent()">
-                    <svg viewBox="0 0 24 24">
-                        <polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" />
-                    </svg>
-                    Assistir Agora
+            <div class="buttons">
+                <button class="btn-play" onclick="document.getElementById('mainContent').scrollIntoView({behavior:'smooth'})">
+                    <i class="fas fa-play"></i> Assistir Agora
                 </button>
                 <button class="btn-info" onclick="alert('Em breve mais informações!')">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" />
-                        <line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" />
-                        <circle cx="12" cy="8" r="0.5" fill="currentColor" stroke="none" />
-                    </svg>
-                    Mais Info
+                    <i class="fas fa-info-circle"></i> Mais Info
                 </button>
             </div>
         </div>
@@ -1042,12 +1065,10 @@
     ============================================================ -->
     <div class="main-content" id="mainContent">
 
-        <!-- ============================================================
-        SEÇÃO: FILTROS
-        ============================================================ -->
+        <!-- Seção: Destaques -->
         <div class="section">
             <div class="section-header">
-                <h2>🎬 <span>Destaques</span></h2>
+                <h2><i class="fas fa-fire" style="color:#cc0033;"></i> <em>Destaques</em></h2>
                 <span class="see-all" onclick="document.querySelectorAll('.filter-btn')[0].click()">Ver todos</span>
             </div>
             <div class="filter-bar">
@@ -1060,18 +1081,14 @@
             </div>
         </div>
 
-        <!-- ============================================================
-        GRID DE VÍDEOS
-        ============================================================ -->
+        <!-- Grid de Vídeos -->
         <div class="section">
             <div class="video-grid" id="videoGrid">
                 <!-- Renderizado pelo JavaScript -->
             </div>
         </div>
 
-        <!-- ============================================================
-        RODAPÉ
-        ============================================================ -->
+        <!-- Footer -->
         <footer class="footer">
             <div class="copy">&copy; 2026 <strong>Xsess</strong> · Todos os direitos reservados</div>
             <div class="footer-links">
@@ -1085,93 +1102,62 @@
     </div>
 
     <!-- ============================================================
-    MODAL DO VÍDEO
+    MODAL
     ============================================================ -->
-    <div class="modal" id="videoModal">
+    <div class="modal-overlay" id="videoModal">
         <div class="modal-content">
-            <button class="close" id="closeModal">✕</button>
-
-            <div class="player" id="modalPlayer">
-                <!-- Player será inserido aqui -->
-            </div>
-
+            <button class="close" id="closeModal"><i class="fas fa-times"></i></button>
+            <div class="player" id="modalPlayer"></div>
             <h2 class="modal-title" id="modalTitle">Título do Vídeo</h2>
             <div class="modal-author" id="modalAuthor">Criador: <span>Xsess Creator</span></div>
-
             <div class="modal-meta" id="modalMeta">
                 <span id="modalDate">00/00/0000</span>
                 <span class="tag" id="modalTag">Exclusivo</span>
             </div>
-
             <div class="modal-desc" id="modalDesc">Descrição do vídeo...</div>
 
             <div class="modal-actions">
                 <button class="like-btn" id="modalLikeBtn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Curtir
+                    <i class="fas fa-heart"></i> Curtir
                 </button>
                 <span class="like-count" id="modalLikeCount">0</span>
             </div>
 
-            <!-- ===== COMENTÁRIOS ===== -->
             <div class="comments-section">
-                <h3>
-                    <svg viewBox="0 0 24 24">
-                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Comentários
-                </h3>
-                <div id="modalComments">
-                    <!-- Comentários serão carregados aqui -->
-                </div>
-
+                <h3><i class="fas fa-comment-dots"></i> Comentários</h3>
+                <div id="modalComments"></div>
                 <form class="comment-form" id="commentForm">
                     <input type="text" id="commentName" placeholder="Seu nome" required />
                     <textarea id="commentText" placeholder="Escreva seu comentário..." rows="3" required></textarea>
-                    <button type="submit" class="comment-submit">Enviar Comentário</button>
+                    <button type="submit" class="comment-submit"><i class="fas fa-paper-plane"></i> Enviar</button>
                 </form>
             </div>
         </div>
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT COMPLETO
+    JAVASCRIPT
     ============================================================ -->
     <script>
         // ============================================================
-        // HEADER SCROLL EFFECT
+        // HEADER SCROLL
         // ============================================================
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
         // ============================================================
-        // SCROLL TO CONTENT
-        // ============================================================
-        function scrollToContent() {
-            document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        // ============================================================
-        // BANCO DE DADOS (localStorage)
+        // BANCO DE DADOS
         // ============================================================
         const DB = {
-            get(key, def) {
+            get: (key, def) => {
                 try {
                     const data = localStorage.getItem('xsess_' + key);
                     return data ? JSON.parse(data) : def;
-                } catch {
-                    return def;
-                }
+                } catch { return def; }
             },
-            set(key, value) {
+            set: (key, value) => {
                 localStorage.setItem('xsess_' + key, JSON.stringify(value));
             }
         };
@@ -1225,7 +1211,7 @@
             const drive = url.match(/drive\.google\.com\/file\/d\/([^\/]+)/);
             if (drive) return `<iframe src="https://drive.google.com/file/d/${drive[1]}/preview" allow="autoplay" allowfullscreen></iframe>`;
 
-            // Link direto (vídeo)
+            // MP4 direto
             if (url.match(/\.(mp4|webm|mov|avi)$/i)) {
                 return `<video controls autoplay style="width:100%;height:100%;background:#000;">
                             <source src="${url}" type="video/mp4">
@@ -1233,7 +1219,7 @@
                         </video>`;
             }
 
-            // Qualquer outro link - tentar embed genérico
+            // Qualquer outro link - tentar embed
             return `<iframe src="${url}" allow="autoplay" allowfullscreen></iframe>`;
         }
 
@@ -1243,22 +1229,14 @@
         function renderVideos(filter = 'all') {
             grid.innerHTML = '';
 
-            let filtered = videos;
-            if (filter !== 'all') {
-                filtered = videos.filter(v =>
-                    v.tags && v.tags.some(t => t.toLowerCase() === filter.toLowerCase())
-                );
-            }
+            let filtered = filter === 'all' ? videos : videos.filter(v =>
+                v.tags && v.tags.some(t => t.toLowerCase() === filter.toLowerCase())
+            );
 
             if (filtered.length === 0) {
                 grid.innerHTML = `
                             <div class="empty-state">
-                                <div class="icon-wrap">
-                                    <svg viewBox="0 0 24 24">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" />
-                                        <polygon points="10 7 16 10 10 13 10 7" stroke="currentColor" />
-                                    </svg>
-                                </div>
+                                <i class="fas fa-film"></i>
                                 <div class="text">Nenhum vídeo encontrado</div>
                                 <div class="sub">${filter === 'all' ? 'Nenhum vídeo publicado ainda.' : 'Nenhum vídeo com este filtro.'}</div>
                             </div>
@@ -1275,15 +1253,13 @@
                     `<span class="tag">${tag}</span>`
                 ).join('') : '';
 
+                // Verifica se o link é um vídeo ou uma URL de embed
+                const isVideoFile = video.link && video.link.match(/\.(mp4|webm|mov|avi)$/i);
+
                 card.innerHTML = `
                             <div class="thumb">
                                 <img src="${video.thumbnail || 'https://via.placeholder.com/640x360/1a1a1a/cc0033?text=Sem+Imagem'}" alt="${video.title}" loading="lazy" />
-                                <div class="overlay">
-                                    <svg class="play-icon" viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="10" stroke="currentColor" />
-                                        <polygon points="10,8 16,12 10,16" fill="white" stroke="none" />
-                                    </svg>
-                                </div>
+                                <div class="overlay"><i class="fas fa-play-circle"></i></div>
                                 <span class="duration">${video.duration || '--:--'}</span>
                             </div>
                             <div class="info">
@@ -1331,20 +1307,10 @@
 
             if (likedVideos.includes(videoId)) {
                 modalLikeBtn.classList.add('liked');
-                modalLikeBtn.innerHTML = `
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            Curtido
-                        `;
+                modalLikeBtn.innerHTML = `<i class="fas fa-heart"></i> Curtido`;
             } else {
                 modalLikeBtn.classList.remove('liked');
-                modalLikeBtn.innerHTML = `
-                            <svg viewBox="0 0 24 24">
-                                <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            Curtir
-                        `;
+                modalLikeBtn.innerHTML = `<i class="fas fa-heart"></i> Curtir`;
             }
 
             // Comentários
@@ -1366,15 +1332,14 @@
         }
 
         // ============================================================
-        // RENDERIZAR COMENTÁRIOS
+        // COMENTÁRIOS
         // ============================================================
         function renderComments(videoId) {
             const videoComments = comments[videoId] || [];
 
             if (videoComments.length === 0) {
-                modalComments.innerHTML = `
-                            <p style="color:#666;font-size:14px;padding:12px 0;">Nenhum comentário ainda. Seja o primeiro!</p>
-                        `;
+                modalComments.innerHTML =
+                    `<p style="color:rgba(255,255,255,0.2);font-size:14px;padding:12px 0;">Nenhum comentário ainda. Seja o primeiro!</p>`;
                 return;
             }
 
@@ -1406,7 +1371,7 @@
         }
 
         // ============================================================
-        // CURTIR VÍDEO
+        // CURTIR
         // ============================================================
         function toggleLike(videoId) {
             if (!likes[videoId]) likes[videoId] = 0;
@@ -1415,22 +1380,12 @@
                 likedVideos = likedVideos.filter(id => id !== videoId);
                 likes[videoId] = Math.max(0, likes[videoId] - 1);
                 modalLikeBtn.classList.remove('liked');
-                modalLikeBtn.innerHTML = `
-                            <svg viewBox="0 0 24 24">
-                                <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            Curtir
-                        `;
+                modalLikeBtn.innerHTML = `<i class="fas fa-heart"></i> Curtir`;
             } else {
                 likedVideos.push(videoId);
                 likes[videoId] = (likes[videoId] || 0) + 1;
                 modalLikeBtn.classList.add('liked');
-                modalLikeBtn.innerHTML = `
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            Curtido
-                        `;
+                modalLikeBtn.innerHTML = `<i class="fas fa-heart"></i> Curtido`;
             }
 
             DB.set('likes', likes);
